@@ -14,6 +14,7 @@ XPATH_DESC = '//*[@id="_idStoreResultListSection"]/table/tbody/tr[3]/td[2]/text(
 XPATH_PRICE = '//*[@id="_idStoreResultListSection"]/table/tbody/tr[3]/td[5]/text()'
 
 def render_JS_store(url):
+    """Function providing renreding of js on url."""
     session = HTMLSession()
     response_store = session.get(url)
     response_store.html.render(timeout=20)
@@ -22,6 +23,7 @@ def render_JS_store(url):
     return response_store
 
 def extract_data(target_url):
+    """Function providing extraction of specific data as name, description, price and items"""
     rendered_page_response = render_JS_store(target_url)
     try:
         items_from_page = rendered_page_response.html.xpath(XPATH_ITEMS)
